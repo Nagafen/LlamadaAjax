@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Llamado Ajax</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script  type = "text/javascript" src="js/jquery-3.2.1.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                obtenerData();
+            });
+            function obtenerData() {
+                $.ajax({
+                    type: 'get'
+                    , url: "ServletAjax"
+                    , async: true
+                    , cache: false
+                    , success: function (resp) {
+                        $.each(resp, function (indice, Datos) {
+                            $("#tabla").append($("<tr>").append(("<td>" + Datos.nombre + "</td>" + "<td>" + Datos.numero + "</td>")))
+                        });
+                    }
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <table border="1" id="tabla">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Numero</th>
+                </tr>
+            </thead>
+        </table>
+    </body>
+</html>
